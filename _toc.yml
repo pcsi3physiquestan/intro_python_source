@@ -1,0 +1,22 @@
+# In _toc.yml
+- file: intro_python
+  numbered: true
+
+
+- part: Eléments de bases
+  chapters:
+  - file: notebook/types
+- part : Fonctions et blocs
+  chapters:
+  - file: notebook/fonctions
+  - file: notebook/structures
+- part: Bilbiothèques scientifiques
+  chapters:
+  - file: notebook/np_vecteurs
+  - file: notebook/plt_presentation
+- part: S'entraîner
+  chapters:
+  - file: notebook/exo_science
+- part: Pour aller plus loin
+  chapters:
+  - file: notebookt/plus_loin
