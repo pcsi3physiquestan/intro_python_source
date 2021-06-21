@@ -3,20 +3,24 @@
   numbered: true
 
 
-- part: Eléments de bases
+- part: Réviser les bases
   chapters:
-  - file: notebook/types
-- part : Fonctions et blocs
-  chapters:
-  - file: notebook/fonctions
-  - file: notebook/structures
+  - file: notebook/bases_intro
+    sections:
+    - file: notebook/types
+  - file: notebook/blocs
+    sections:
+    - file: notebook/fonctions
+    - file: notebook/condition
+    - file: notebook/boucles
 - part: Bilbiothèques scientifiques
   chapters:
   - file: notebook/np_vecteurs
   - file: notebook/plt_presentation
-- part: S'entraîner
+- part: Plus loin avec numpy
   chapters:
-  - file: notebook/exo_science
+  - file: notebook/import_file
+  - file: notebook/num_random
 - part: Pour aller plus loin
   chapters:
-  - file: notebookt/plus_loin
+  - file: notebook/plus_loin

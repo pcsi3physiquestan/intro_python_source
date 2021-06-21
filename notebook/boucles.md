@@ -14,70 +14,14 @@ kernelspec:
   name: python3
 ---
 
-# Blocs d'instructions.
-On distingue deux blocs d'instructions :
-* les instructions conditionnelles
-* les instructions itératives (boucles)
-
-## Instructions conditionnelles
-
-### Un exemple pas très utile...
-```{code-cell}
-L = [1, 4, 9, 2, 1]
-
-if len(L) < 3:
-	print("La longueur de la liste est inférieure à 3")
-else:
-	print("La longueur de la liste est supérieure à 3")
-```
-
-### Syntaxe
-La syntaxe :
-* Premiere condition à tester : `if condition :`. Le `:` est obligatoire.
-* Deuxième condition à tester : `elif condition :`
-* Bloc de fin : `else:` (facultatif)
-* Sous chaque condition : __le bloc d'instruction à exécuter sous condition doit être indenté__.
-
-### Les conditions
-Un condition renvoie un booléen `True ` ou `False`. Exemples de condition :
-* Egalité : `==` (__pas `=`__)
-* Inégalité : `<, >, <=, >=`
-* Appartenance à une liste : `3 in L` (renvoie True si `3` est un élément de la liste `L`)
-
-### Un autre exemple
-
-```{code-cell}
-""" 
-On va utiliser les instructions conditionnelles pour créer une fonction mathématique par morceaux
-"""
-def fonction_morceau(x):
-	if x < 3:  # Si x < 3
-		a = x - 4
-		return a
-	elif x < 5:  # Si 3 <= x < 5
-		return x ** 2
-	else:  # Si x >=5
-		a = x + 4
-		b = a ** 3
-		return b
-
-print(fonction_morceau(3))
-print(fonction_morceau(4))
-print(fonction_morceau(6))
-```
-
-```{margin}
-L'exemple précédent montre que si le premier test est vrai, les tests suivant n'auront pas lieu, on sort du bloc conditionnel. Idem si le second test est vrai, on n'exécute pas le `else`.
-```
-
-## Instructions itératives.
+# Instructions itératives.
 Les boucles permettent de réaliser plusieurs fois la même série d'instructions. On distingue deux types de boucles :
 * les boucles bornées (`for`) : on sait quand la boucle va s'arrêter.
 * les boucles non bornées (`while`) : on impose une condition d'arrêt de la boucle sans savoir quand elle sera réalisée.
 
-### Boucle for
+## Boucle for
 
-#### Un exemple 
+### Un exemple 
 
 (exemple-for)=
 ```{code-cell}
@@ -87,16 +31,16 @@ for n in L:
 	print(n**2)
 ```
 
-#### Syntaxe
+### Syntaxe
 * Début de la boucle : `for variable_d_iteration in objet_iterable:` : le `:` est obligatoire
 * Eviter d'utiliser comme `variable_d_iteration` une variable qui existe déjà.
 * Un `objet_iterable` est un objet qui contient plusieurs éléments et qui peut être parcouru (itéré). La `variable_d_iteration` prendre comme valeur à chaque tour de boucle les différents éléments. Pour nous les `objet_iterable` sont :
     * les listes
     * les vecteurs numpy (cf. suite)
-    * des objets crée pour la boucle comme `range(5)` qui va créer une sorte de "liste" [0, 1, 2, 3, 4]
+    * des objets créés pour la boucle comme `range(5)` qui va créer une suire de nombres (0, 1, 2, 3, 4)
 * Le corps de la boucle (série d'instruction à exécuter en boucle) doit __être indenté__.
 
-#### Exemple
+### Exemple
 * A partir d'une liste déjà créée : cf. l'[exemple précédent](exemple-for).
 * On utilise `range(n)` :
 
@@ -105,18 +49,31 @@ for n in range(4):  # On aura donc n=0, n=1, n=2, n=3 et on sort de la boucle
 	print(n**2)
 ```
 
-```{margin}
-On pourra utiliser `range(start, stop, pas)` qui crée une succession de valeur de `start` (inclus) jusqu'à `stop` (non inclus) avec un incrément de `pas` (facultatif, il vaut alors 1). _Cela ne fonctionne qu'avec des __entiers__._ 
-```
-
 ```{important}
 La "liste" créée par `range(n)` commence à 0 et s'arrête à __n-1__
 ```
 
+### Aller plus loin avec range
+La syntaxe précédente `range(n)` suffit en général. Mais il existe une autre syntaxe plus complète : `range(start, stop, step)` qui créé une suite de nombre partant de `start` inclus jusqu'à `stop` __non inclus__ par pas de `step`
 
+````{admonition} Exemples
+:class: note
+* `range(3, 8, 2)` crée la suite de nombres `3, 5, 7`
+* `range(3, 9, 2)` crée la suite de nombres `3, 5, 7` (pas le 9 qui est exclus)
+* `range(3, 5, 2)` crée la suite de nombres `3`
+* `range(7, 5, 1)` crée une suite vide puisque 7 est plus grand que 5
 
-### Boucle while
-#### Un exemple
+On peut aussi utiliser un pas négatif (avec `start` > `stop`) :
+* `range(8, 4, -1)` crée la suite de nombres `8, 7, 6, 5`
+````
+
+```{margin}
+C'est un détail pour nous mais `range(n)` ne crée pas une liste (on peut s'en rendre compte en demande `print(range(3))` ou `type(range(3))`). Si on veut le transformer en liste, il faudra écrire `list(range(3))`. Cela dit, il est conseillé alors d'utiliser un vecteur numpy (cf. suite).
+
+```
+
+## Boucle while
+### Un exemple
 ```{code-cell}
 i = 0  # Initialisation
 while i < 4:
@@ -124,7 +81,7 @@ while i < 4:
 	i = i + 1  # Incrémentation
 ```
 
-#### Syntaxe
+### Syntaxe
 * __Initialisation__ : Une boucle nécessite en général une initialisation (précédemment définir le `i` et lui donner une valeur de départ).
 * `while condition:` : le `:` est obligatoire
 * le bloc d'instruction __doit être indenté__.
@@ -134,7 +91,7 @@ while i < 4:
 Un microcontrolleur (comme Arduino) est programmé avec une boucle infinie pour réaliser sans fin les instructions qu'on lui a donné. Dans nos programmes, on le fera rarement...
 ```
 
-#### Exemple
+### Exemple
 ```{code-cell}
 """On va remplir une liste avec le carré des entiers n tant que n^2 - 2n < 5.
 On ne peut utiliser une boucle for car on ne sait pas jusqu'à quel n aller.
