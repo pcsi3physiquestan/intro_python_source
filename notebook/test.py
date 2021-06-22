@@ -483,3 +483,59 @@ distances = donnees[:, 0]  # Liste des distances.
 # print("---------")
 
 
+"""Saisie des données"""
+R = np.array([100, 150, 200, 250, 300, 350, 400, 450, 500])
+tau = np.array([164, 196, 275, 294, 354, 396, 481, 497, 558])
+
+"""Incertitude sur les valeurs"""
+uR = R * 0.02
+utau = tau * 0.05
+
+"""Création du graphique et analyse des points de mesure"""
+f, ax= plt.subplots()
+f.suptitle("Détermination de C")
+ax.set_xlabel("R(Ohm)")
+ax.set_ylabel("tau(micro s")
+
+ax.errorbar(R, tau, xerr=uR, yerr=utau, marker='+', linestyle='', color='red', label="Points de mesure")
+
+ax.legend()
+# plt.show()
+print("Les points sont plutôt alignés. C'est encourageant pour l'utilisation de la relation tau = RC")
+
+"""Ajustement linéaire"""
+p, V = np.polyfit(R, tau, 1)
+
+
+tau_adj = p[0] * R + p[1]  # Pour le tracé de la droite d'ajustement
+
+print("----------------")
+print("Droite d'ajustement :")
+print("tau = " + str(p[0]) + "* R + " + str(p[1]))
+print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+print("----------------")
+
+ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
+
+# plt.show()  # Commenter le précédent plt.show()
+
+print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
+
+"""Détermination de C"""
+C = p[0] * 1e-6  # Passage en secondes pour tau.
+print("----------------")
+print("Estimation de C par régression linéaire :")
+print("C = " + str(C) + " F")
+print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+print("----------------")
+
+
+"""Détermination de C par moyenne des rapports"""
+C_s = tau / R * 1e-6  # Calcul des C pour chaque valeur de R
+C2 = np.mean(C_s)  # Calcul de la moyenne
+print("----------------")
+print("Estimation de C par moyenne des rapports :")
+print("C = " + str(C2) + " F")
+print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+print("----------------")
+
