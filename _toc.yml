@@ -19,6 +19,7 @@
   - file: notebook/plt_presentation
 - part: Plus loin avec numpy
   chapters:
+  - file: notebook/np_polyfit
   - file: notebook/import_file
   - file: notebook/num_random
 - part: Pour aller plus loin
