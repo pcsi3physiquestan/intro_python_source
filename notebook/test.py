@@ -483,59 +483,241 @@ distances = donnees[:, 0]  # Liste des distances.
 # print("---------")
 
 
-"""Saisie des données"""
-R = np.array([100, 150, 200, 250, 300, 350, 400, 450, 500])
-tau = np.array([164, 196, 275, 294, 354, 396, 481, 497, 558])
+# """Saisie des données"""
+# R = np.array([100, 150, 200, 250, 300, 350, 400, 450, 500])
+# tau = np.array([164, 196, 275, 294, 354, 396, 481, 497, 558])
 
-"""Incertitude sur les valeurs"""
-uR = R * 0.02
-utau = tau * 0.05
+# """Incertitude sur les valeurs"""
+# uR = R * 0.02
+# utau = tau * 0.05
 
-"""Création du graphique et analyse des points de mesure"""
-f, ax= plt.subplots()
-f.suptitle("Détermination de C")
-ax.set_xlabel("R(Ohm)")
-ax.set_ylabel("tau(micro s")
+# """Création du graphique et analyse des points de mesure"""
+# f, ax= plt.subplots()
+# f.suptitle("Détermination de C")
+# ax.set_xlabel("R(Ohm)")
+# ax.set_ylabel("tau(micro s")
 
-ax.errorbar(R, tau, xerr=uR, yerr=utau, marker='+', linestyle='', color='red', label="Points de mesure")
+# ax.errorbar(R, tau, xerr=uR, yerr=utau, marker='+', linestyle='', color='red', label="Points de mesure")
 
-ax.legend()
+# ax.legend()
+# # plt.show()
+# print("Les points sont plutôt alignés. C'est encourageant pour l'utilisation de la relation tau = RC")
+
+# """Ajustement linéaire"""
+# p, V = np.polyfit(R, tau, 1)
+
+
+# tau_adj = p[0] * R + p[1]  # Pour le tracé de la droite d'ajustement
+
+# print("----------------")
+# print("Droite d'ajustement :")
+# print("tau = " + str(p[0]) + "* R + " + str(p[1]))
+# print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+# print("----------------")
+
+# ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
+
+# # plt.show()  # Commenter le précédent plt.show()
+
+# print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
+
+# """Détermination de C"""
+# C = p[0] * 1e-6  # Passage en secondes pour tau.
+# print("----------------")
+# print("Estimation de C par régression linéaire :")
+# print("C = " + str(C) + " F")
+# print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+# print("----------------")
+
+
+# """Détermination de C par moyenne des rapports"""
+# C_s = tau / R * 1e-6  # Calcul des C pour chaque valeur de R
+# C2 = np.mean(C_s)  # Calcul de la moyenne
+# print("----------------")
+# print("Estimation de C par moyenne des rapports :")
+# print("C = " + str(C2) + " F")
+# print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
+# print("----------------")
+
+# f, ax = plt.subplots(3, 3, figsize=(8, 5))
+
+# f.suptitle("Grille multi graphique")
+
+# for i in range(3):
+#     for j in range(3):
+#          ax[i, j].text(0.5, 0.5, 'ax[{}, {}]'.format(i, j), horizontalalignment='center', verticalalignment='center', transform=ax[i, j].transAxes, color='red')
+#          ax[i, j].set_ylabel("Y")
+#          ax[i, j].set_xlabel("X")
 # plt.show()
-print("Les points sont plutôt alignés. C'est encourageant pour l'utilisation de la relation tau = RC")
 
-"""Ajustement linéaire"""
-p, V = np.polyfit(R, tau, 1)
+# tau = 1  # Constante de temps
+# U0 = 5  # Tension initiale
+# C = 1e-4  # Condensateur
+
+# t = np.linspace(0, 5 * tau, 1000)  # On trace 1000 points sur 5 tau.
+# uc = U0 * np.exp(-t / tau)  # Tension uC
+# i = - C / tau * U0 *np.exp(-t / tau)  # Intensité
+
+# f, ax = plt.subplots(1, 2)  # 1 ligne et 2 colonnes : ax est un vecteur
+
+# f.suptitle("Circuit RC en régime libre")
+# """ Tracé du premier graphique"""
+# ax[0].set_xlabel("t(s)")  # Une seule ligne : ax donc un vecteur. Un seul indice suffit
+# ax[0].set_ylabel("uc(V)")  # Une seule ligne : ax donc un vecteur. Un seul indice suffit
+
+# ax[0].plot(t, uc, label='uC(t)', color='red')
+# ax[0].legend()
+
+# """ Tracé du second graphique"""
+# ax[1].set_xlabel("t(s)")  # Une seule ligne : ax donc un vecteur. Un seul indice suffit
+# ax[1].set_ylabel("i(A)")  # Une seule ligne : ax donc un vecteur. Un seul indice suffit
+
+# ax[1].plot(t, i, label='i(t)', color='blue')
+
+# ax[1].legend()
+
+# plt.show()
+
+# l = 1  # Longueur du pendule (m)
+
+# g = 9.81  # Champ de pesanteur (m/s^2)
+# m = 1  # Masse(kg)
+# w0 = np.sqrt(g / l)  # Pulsation propre (rad/s)
+# theta0 = 0.5  # Amplitude des oscillations (rad)
+
+# N = 1000
+# t = np.linspace(0, 3 * 2 * np.pi / w0, N)
+# theta = theta0 * np.cos(w0 * t)  # Angle
+# thetapoint = -w0 * theta0 * np.sin(w0 * t)  # Vitesse angulaire
+# Ep = 1 / 2 * m * g *l * theta ** 2  # Energie potentielle dans l'approximation des petites angles
+# Ec = 1 / 2 * m * l ** 2 * thetapoint ** 2  # Energie cinétique
 
 
-tau_adj = p[0] * R + p[1]  # Pour le tracé de la droite d'ajustement
+"""Création du graphique
+"""
+# f, ax = plt.subplots(2, 2)  # ax est un tableau
+# f.suptitle("Petites oscillations d'un pendule")
 
-print("----------------")
-print("Droite d'ajustement :")
-print("tau = " + str(p[0]) + "* R + " + str(p[1]))
-print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
-print("----------------")
+# """Tracé de l'angle : en haut à gauche"""
+# ax[0, 0].set_xlabel("t(s)")
+# ax[0, 0].set_ylabel("theta(rad)")
+# ax[0, 0].plot(t, theta, label="Angle", color="blue")
+# ax[0, 0].set_title("Angle")
 
-ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
+# """Tracé de la vitesse angulaire : en bas à gauche"""
+# ax[1, 0].set_xlabel("t(s)")
+# ax[1, 0].set_ylabel("theta point(rad/s)")
+# ax[1, 0].plot(t, thetapoint, label="Vitesse angulaire", color="red")
+# ax[1, 0].set_title("Vitesse angulaire")
 
-# plt.show()  # Commenter le précédent plt.show()
+# """Tracé de l'énergie potentielle : en haut à droite"""
+# ax[0, 1].set_xlabel("t(s)")
+# ax[0, 1].set_ylabel("Ep(J)")
+# ax[0, 1].plot(t, Ep, label="Energie potentielle", color="blue")
+# ax[0, 1].set_title("Energie potentielle")
 
-print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
+# """Tracé de l'énergie cinétique : en haut à droite"""
+# ax[1, 1].set_xlabel("t(s)")
+# ax[1, 1].set_ylabel("Ec(J)")
+# ax[1, 1].plot(t, Ec, label="Energie cinétique", color="red")
+# ax[1, 1].set_title("Energie cinétique")
 
-"""Détermination de C"""
-C = p[0] * 1e-6  # Passage en secondes pour tau.
-print("----------------")
-print("Estimation de C par régression linéaire :")
-print("C = " + str(C) + " F")
-print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
-print("----------------")
+# f.tight_layout()
+# plt.show()
+
+# f, ax = plt.subplots(2, 2, sharex='all', sharey='row')  # ax est un tableau
+# f.suptitle("Petites oscillations d'un pendule")
+
+# """Tracé de l'angle : en haut à gauche"""
+# # ax[0, 0].set_xlabel("t(s)")
+# ax[0, 0].set_ylabel("theta(rad)")
+# ax[0, 0].plot(t, theta, label="Angle", color="blue")
+# # ax[0, 0].set_title("Angle")
+
+# """Tracé de la vitesse angulaire : en haut à droite"""
+# # ax[0, 1].set_xlabel("t(s)")
+# ax[0, 1].set_ylabel("theta point(rad/s)")
+# ax[0, 1].plot(t, thetapoint, label="Vitesse angulaire", color="red")
+# # ax[0, 1].set_title("Vitesse angulaire")
+
+# """Tracé de l'énergie potentielle : en bas à gauche"""
+# ax[1, 0].set_xlabel("t(s)")
+# ax[1, 0].set_ylabel("Ep(J)")
+# ax[1, 0].plot(t, Ep, label="Energie potentielle", color="blue")
+# # ax[1, 0].set_title("Energie potentielle")
+
+# """Tracé de l'énergie cinétique : en haut à droite"""
+# ax[1, 1].set_xlabel("t(s)")
+# ax[1, 1].set_ylabel("Ec(J)")
+# ax[1, 1].plot(t, Ec, label="Energie cinétique", color="red")
+# # ax[1, 1].set_title("Energie cinétique")
+
+# f.tight_layout()
+# plt.show()
 
 
-"""Détermination de C par moyenne des rapports"""
-C_s = tau / R * 1e-6  # Calcul des C pour chaque valeur de R
-C2 = np.mean(C_s)  # Calcul de la moyenne
-print("----------------")
-print("Estimation de C par moyenne des rapports :")
-print("C = " + str(C2) + " F")
-print("Il faudrait arrondir en réfléchissant aux chiffres significatifs.")
-print("----------------")
+# x = np.linspace(0, 2 * np.pi, 1000)  # 1000 points espacés entre 0 et 2pi
+# y = np.sin(x)  # Numpy permet d'appliquer sin() aux 1000 points en une ligne.
 
+
+
+# """
+# On crée maintenant le graphique
+# """
+# f, ax = plt.subplots()  # On crée la fenêtre graphique et les axes (= zone de tracé, ici une seule zone)
+
+# f.suptitle("Titre du graphique")  # On donne un titre au graphique
+
+# ax.set_xlabel("Temps (s)")  # On légende les abscisses de la zone de tracé
+# ax.set_ylabel("Position (m)")  # On légende les ordonnées de la zone de tracé
+
+# ax.plot(x, y, label="Légende")  # On trace la courbe voulue
+
+# ax.legend()  # On affiche la légende de la zone de tracé
+
+# ax.grid()  # Optionnel : permet d'afficher une grille sur le graphique
+
+# plt.show()  # On demande d'afficher le graphique.
+
+def estim_pi(N, k = 100000):
+	"""Fonction qui estime pi à partir du tirage de N points uniformément."""
+	x = rd.uniform(0, 1, (N, k))  # Création des N abscisses
+	y = rd.uniform(0, 1, (N, k))  # Création des N ordonnées
+	z = x ** 2 + y ** 2 <= 1
+	pis = 4 * z.sum(axis=0) / N
+	# n_dedans = 0  # On va stocker ici le nombre de points qui sont dans le cercle.
+	# for i in range(N):
+	# 	if (x[i] ** 2 + y[i] ** 2) < 1:
+	# 		n_dedans = n_dedans + 1
+	return pis
+
+""" Détermination de pi à 10^(-10) """
+
+# tol = 1e-5  # Tolérance cherchée sur la valeur de pi
+# N = 1  # Initialisation du nombre de tirages.
+# estimation, ue = estim_pi(N)
+# ecart = np.abs(estimation - np.pi)  # Initialisation de l'écart entre la valeur calculée et la valeur de référence np.pi
+# while ecart > tol:  # Test de l'écart à la valeur de référence
+# 	N = N + 1  # Incrémentation
+# 	estimation, ue = estim_pi(N)
+# 	ecart = np.abs(estimation - np.pi)  # On n'oublie pas la valeur absolue car l'estimation peut etre inférieure ou supérieure.
+# N0 = N
+
+# print("--------------")
+# print("Nombre de simulations minimales nécessaires : ", N0)
+# print("Estimation de pi : ", 4 * estimation)
+# print("--------------")
+
+N0 = 10000
+m = 1000
+Ns = range(1000, N0, m)
+pie = []
+for i in range(len(Ns)):
+	print(Ns[i])
+	pie.append(estim_pi(Ns[i]))
+
+plt.plot(Ns, np.mean(pie, axis=1))
+plt.fill_between(Ns, np.mean(pie, axis=1) - np.std(pie, ddof=1, axis=1), np.mean(pie, axis=1) + np.std(pie, ddof=1, axis=1), color=(1, 0, 0, 0.1))
+plt.show()
+
+	
