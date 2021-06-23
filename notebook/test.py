@@ -679,17 +679,17 @@ distances = donnees[:, 0]  # Liste des distances.
 
 # plt.show()  # On demande d'afficher le graphique.
 
-def estim_pi(N, k = 100000):
-	"""Fonction qui estime pi à partir du tirage de N points uniformément."""
-	x = rd.uniform(0, 1, (N, k))  # Création des N abscisses
-	y = rd.uniform(0, 1, (N, k))  # Création des N ordonnées
-	z = x ** 2 + y ** 2 <= 1
-	pis = 4 * z.sum(axis=0) / N
-	# n_dedans = 0  # On va stocker ici le nombre de points qui sont dans le cercle.
-	# for i in range(N):
-	# 	if (x[i] ** 2 + y[i] ** 2) < 1:
-	# 		n_dedans = n_dedans + 1
-	return pis
+# def estim_pi(N, k = 100000):
+#   """Fonction qui estime pi à partir du tirage de N points uniformément."""
+#   x = rd.uniform(0, 1, (N, k))  # Création des N abscisses
+#   y = rd.uniform(0, 1, (N, k))  # Création des N ordonnées
+#   z = x ** 2 + y ** 2 <= 1
+#   pis = 4 * z.sum(axis=0) / N
+#   # n_dedans = 0  # On va stocker ici le nombre de points qui sont dans le cercle.
+#   # for i in range(N):
+#   #   if (x[i] ** 2 + y[i] ** 2) < 1:
+#   #       n_dedans = n_dedans + 1
+#   return pis
 
 """ Détermination de pi à 10^(-10) """
 
@@ -698,9 +698,9 @@ def estim_pi(N, k = 100000):
 # estimation, ue = estim_pi(N)
 # ecart = np.abs(estimation - np.pi)  # Initialisation de l'écart entre la valeur calculée et la valeur de référence np.pi
 # while ecart > tol:  # Test de l'écart à la valeur de référence
-# 	N = N + 1  # Incrémentation
-# 	estimation, ue = estim_pi(N)
-# 	ecart = np.abs(estimation - np.pi)  # On n'oublie pas la valeur absolue car l'estimation peut etre inférieure ou supérieure.
+#   N = N + 1  # Incrémentation
+#   estimation, ue = estim_pi(N)
+#   ecart = np.abs(estimation - np.pi)  # On n'oublie pas la valeur absolue car l'estimation peut etre inférieure ou supérieure.
 # N0 = N
 
 # print("--------------")
@@ -708,16 +708,51 @@ def estim_pi(N, k = 100000):
 # print("Estimation de pi : ", 4 * estimation)
 # print("--------------")
 
-N0 = 10000
-m = 1000
-Ns = range(1000, N0, m)
-pie = []
-for i in range(len(Ns)):
-	print(Ns[i])
-	pie.append(estim_pi(Ns[i]))
+# N0 = 10000
+# m = 1000
+# Ns = range(1000, N0, m)
+# pie = []
+# for i in range(len(Ns)):
+#   print(Ns[i])
+#   pie.append(estim_pi(Ns[i]))
 
-plt.plot(Ns, np.mean(pie, axis=1))
-plt.fill_between(Ns, np.mean(pie, axis=1) - np.std(pie, ddof=1, axis=1), np.mean(pie, axis=1) + np.std(pie, ddof=1, axis=1), color=(1, 0, 0, 0.1))
-plt.show()
+# plt.plot(Ns, np.mean(pie, axis=1))
+# plt.fill_between(Ns, np.mean(pie, axis=1) - np.std(pie, ddof=1, axis=1), np.mean(pie, axis=1) + np.std(pie, ddof=1, axis=1), color=(1, 0, 0, 0.1))
+# plt.show()
 
-	
+# xi = np.array([0.2, 0.8, 1.6, 3.4, 4.5, 7.5])
+# yi = np.array([4.4, 5.7, 7.2, 11.7, 13.3, 21.8])
+
+# a = [4, 1, 2, 2.35]
+# b = [0, 5, 4, 3.62]
+
+
+# f, ax = plt.subplots(4, 3, figsize=(9, 6))
+# f.suptitle("La méthode des moindres carrés")
+# ax[0, 0].set_title("Ecarts (bleu) pour un couple (a,b)")
+# ax[0, 1].set_title("Carré des écarts")
+# ax[0, 2].set_title("Somme des écarts")
+
+# for i in range(len(a)):
+#     ax[i, 0].set_ylabel("a = {};  n = {}".format(a[i], b[i]), fontsize='x-small')
+#     ax[i, 0].plot(xi, yi, marker='o', markersize=1, color='red', linestyle='', label='yi')
+#     yi_adj = a[i] * xi + b[i]
+#     ecm = (yi + yi_adj) / 2
+#     ecu = np.abs(yi - yi_adj) / 2
+#     ax[i, 0].plot(xi, yi_adj, color='black', linestyle='--', linewidth=0.5, label='yi_adj')
+#     ax[i, 0].errorbar(xi, ecm, yerr=ecu, color='blue', linestyle='', label="Ecarts", linewidth=0.5)
+#     ax[i, 0].legend(fontsize='xx-small')
+    
+#     en = (yi - yi_adj) ** 2
+#     ax[i, 1].plot(xi, en, linestyle='', marker='o', markersize=1, color="red")
+#     ax[i, 1].bar(xi, en, width=.05, label="(yi_- y_adj)^2")
+#     ax[i, 1].legend(fontsize='xx-small')
+
+#     Gamma = ((yi - (a[i] * xi + b [i])) ** 2).sum()
+#     ax[i, 2].set_axis_off()
+#     ax[i, 2].text(0, 0.5, "Gamma({}, {}) = {:.0f}".format(a[i], b[i], Gamma))
+
+# f.tight_layout()
+# plt.show()
+
+
