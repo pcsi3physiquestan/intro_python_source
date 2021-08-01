@@ -1,9 +1,8 @@
-# In _toc.yml
-- file: intro_python
+format: jb-book
+root: intro_python
+parts:
+- caption: "Réviser les bases"
   numbered: true
-
-
-- part: Réviser les bases
   chapters:
   - file: notebook/bases_intro
     sections:
@@ -13,15 +12,18 @@
     - file: notebook/fonctions
     - file: notebook/condition
     - file: notebook/boucles
-- part: Bilbiothèques scientifiques
+- caption: "Bilbiothèques scientifiques"
+  numbered: true
   chapters:
   - file: notebook/np_vecteurs
   - file: notebook/plt_presentation
-- part: Plus loin avec numpy
+- caption: Plus loin avec numpy
+  numbered: true
   chapters:
   - file: notebook/np_polyfit
   - file: notebook/import_file
   - file: notebook/num_random
-- part: Pour aller plus loin
+- caption: Pour aller plus loin
+  numbered: true
   chapters:
   - file: notebook/plus_loin
