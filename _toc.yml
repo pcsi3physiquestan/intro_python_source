@@ -23,11 +23,11 @@ parts:
   - file: notebook/np_polyfit
   - file: notebook/import_file
   - file: notebook/num_random
-- caption: Récapitulation
+- caption: "Récapitulation"
   numbered: true
   chapters:
   - file: notebook/syntaxe
-- caption: Pour aller plus loin
+- caption: "Pour aller plus loin"
   numbered: true
   chapters:
   - file: notebook/plus_loin
