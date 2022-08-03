@@ -30,4 +30,7 @@ parts:
 - caption: "Pour aller plus loin"
   numbered: true
   chapters:
-  - file: notebook/plus_loin
+  - file: notebook/plus_loin_multi
+  - file: notebook/plus_loin_tableaux
+  - file: notebook/plus_loin_comprehension
+  - file: notebook/plus_loin_methodes

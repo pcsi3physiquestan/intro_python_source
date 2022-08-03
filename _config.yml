@@ -1,7 +1,7 @@
 # in _config.yml
 #######################################################################################
 # Book settings
-title                       : "Python : Bases à connaître"
+title                       : "Méthodes numériques"
 author                      : "Capacités numériques"  # The author of the book
 copyright                   : "2021"  # Copyright year to be placed in the footer
 logo                        : ""  # A path to the book logo
@@ -50,7 +50,7 @@ html:
   extra_footer              : ""  # Will be displayed underneath the footer.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
   home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
-  baseurl                   : "https://pcsi3physiquestan.github.io/intro_python"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  baseurl                   : "https://pcsi3physiquestan.github.io/methodes_num"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
     hypothesis              : false
     utterances              : false
@@ -61,7 +61,7 @@ latex:
   latex_engine              : xelatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
   use_jupyterbook_latex     : true # use jupyterbook-latex for pdf builds as default
   latex_documents:
-    targetname: intro_python.tex
+    targetname: methodes_num.tex
 
 #######################################################################################
 # Launch button settings
@@ -73,7 +73,7 @@ launch_buttons:
 #  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
 
 repository:
- url                       : https://github.com/pcsi3physiquestan/intro_python_source  # The URL to your book's repository
+ url                       : https://github.com/pcsi3physiquestan/methodes_num_source  # The URL to your book's repository
  path_to_book              : ""  # A path to your book's folder, relative to the repository root.
  branch                    : main  # Which branch of the repository should be used when creating links
 
